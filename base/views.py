@@ -25,7 +25,7 @@ def generate_session(gen_type, data):
         return None
     chars = string.ascii_lowercase + string.digits  
     session_id = "".join(random.choices(chars, k = 20))
-    session = PhishSession.objects.create(session_id = session_id, user = user, gen_type = gen_type, redirect = data['redirect'])
+    session = PhishSession.objects.create(session_id = session_id, user = user, gen_type = data['linkType'], redirect = data['redirect'])
     token, created = Token.objects.get_or_create(user = user)
     return {"session":session, "key": token.key}
 
